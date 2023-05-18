@@ -4,14 +4,19 @@ const fs = require("fs");
 
 const app = express();
 app.use(cors({ origin: "*" }));
+// app.use(cors({ origin: "https://chat.openai.com" })); // Allow ChatGPT to access this API
+
 app.use(express.json());
 
 // Keep track of todo's. Does not persist if Node.js session is restarted.
 const _TODOS = {};
 
 app.post("/todos/:username", (req, res) => {
+  console.log(req.body);
   const username = req.params.username;
   const todo = req.body.todo;
+
+  console.log(`Adding todo ${todo} for user ${username}`);
 
   if (!_TODOS[username]) {
     _TODOS[username] = [];
@@ -22,11 +27,13 @@ app.post("/todos/:username", (req, res) => {
 });
 
 app.get("/todos/:username", (req, res) => {
+  console.log(`Fetching todos for user ${req.params.username}`);
   const username = req.params.username;
   res.status(200).json(_TODOS[username] || []);
 });
 
 app.delete("/todos/:username", (req, res) => {
+  console.log(`Deleting todos for user ${req.params.username}`);
   const username = req.params.username;
   const todo_idx = req.body.todo_idx;
 
