@@ -3,7 +3,7 @@ const cors = require("cors");
 const fs = require("fs");
 
 const app = express();
-app.use(cors({ origin: "https://chat.openai.com" }));
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 
 // Keep track of todo's. Does not persist if Node.js session is restarted.
@@ -67,6 +67,6 @@ app.get("/openapi.yaml", (req, res) => {
   });
 });
 
-app.listen(5003, "0.0.0.0", () => {
+app.listen(5003, () => {
   console.log("Server running on port 5003");
 });
