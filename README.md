@@ -7,13 +7,13 @@ Get a todo list ChatGPT plugin up and running in under 5 minutes using Python. I
 To install the required packages for this plugin, run the following command:
 
 ```bash
-pip install -r requirements.txt
+npm update
 ```
 
 To run the plugin, enter the following command:
 
 ```bash
-python main.py
+node main.js
 ```
 
 Once the local server is running:
